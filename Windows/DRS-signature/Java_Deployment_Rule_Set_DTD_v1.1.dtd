@@ -1,0 +1,20 @@
+<!ELEMENT ruleset (rule*)>
+<!ATTLIST ruleset version CDATA #REQUIRED>
+ 
+<!ELEMENT rule (id, action)>
+ 
+<!ELEMENT id (certificate?)>
+<!ATTLIST id title CDATA #IMPLIED>
+<!ATTLIST id location CDATA #IMPLIED>
+ 
+<!ELEMENT certificate EMPTY>
+<!ATTLIST certificate algorithm CDATA #IMPLIED>
+<!ATTLIST certificate hash CDATA #REQUIRED>
+ 
+<!ELEMENT action (message?)>
+<!ATTLIST action permission (run | block | default) #REQUIRED>
+<!ATTLIST action version CDATA #IMPLIED>
+<!ATTLIST action force (true|false) "false">       <!-- introduced in 1.1 -->
+ 
+<!ELEMENT message (#PCDATA)>
+<!ATTLIST message locale CDATA #IMPLIED>

@@ -1,0 +1,1 @@
+copy DeploymentRuleSet.jar C:\Windows\Sun\Java\Deployment

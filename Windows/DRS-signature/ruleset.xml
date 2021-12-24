@@ -1,0 +1,1265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ruleset version="1.1+">
+<!-- 
+<ruleset version="1.2">
+<!DOCTYPE document SYSTEM "Java_Deployment_Rule_Set_DTD_v1.1.dtd">
+-->
+<!-- 
+* 
+* Functional version: 1.0.0
+* $Revision: 123 $
+*
+* To update RuleSet on CUW workstation: 
+* 1.A Check DRS latest release version deployed on Production at \\mycompany.com\Dfs\OSS\Configuration_Packaging\JRE_RuleSet\PRD\JRE_DRS_latest_version.txt
+* 1.B Check DRS version installed on workstation
+* 1.C If available, check DRS latest Hotfix version at \\mycompany.com\Dfs\OSS\Configuration_Packaging\JRE_RuleSet\INC\JRE_DRS_latest_version.txt
+*
+* 2. PULL Production DRS from RAP ==> Collection JRE_Deployment_Rule_Set PULL [CEN00xxx]
+* 
+* 3. To Install a Hotfix specific to resolve an incident, add PC to collection name 
+*    - for SD & "SD  L2"  : SD_JRE_Rule_Set_Install_v2.0_MUI_xMP_R2 - Install INC [CENxxx]
+*    - for "DESKTOP L3" :JRE_Rule_Set_Install_update_V2_R2_INC - Install [CENxxx]
+*
+* Hotfix file location on DFS in case of Incident Management [INC] :
+*  \\mycompany.com\Dfs\OSS\Configuration_Packaging\JRE_RuleSet\INC\DeploymentRuleSet.jar
+*
+* File location on DFS in case of Release Management: 
+* - Production [PRD] :  \\mycompany.com\Dfs\OSS\Configuration_Packaging\JRE_RuleSet\PRD\DeploymentRuleSet.jar
+* - Pilot [PLT] : \\mycompany.com\Dfs\OSS\Configuration_Packaging\JRE_RuleSet\PLT\DeploymentRuleSet.jar
+* - UAT [UAT] : \\mycompany.com\Dfs\OSS\Configuration_Packaging\JRE_RuleSet\UAT\DeploymentRuleSet.jar
+*
+-->
+  
+  <!-- RuleSet -->
+
+  <!-- allow anything signed with Corporate PKI cert for applications supporting JRE 8, the certificate expiration date is : dd/MM/YYYY -->
+  <rule> 
+    <id>
+      <certificate algorithm="SHA-256" hash="" />
+    </id>
+    <action permission="run" version="1.8.0_131" force="true" >
+		<!-- <message>Internal Webapp running Java 8 SHA-256 authorized to run</message> -->
+	</action>
+  </rule> 
+  
+ 
+  <!-- Intranet portal -->
+  <rule>
+    <id location="intranet.eu.corp.mycompany.com" />
+    <action permission="run" version="1.8.0_131" force="true" >
+		<!-- <message>Intranet portal Applet running Java 8 authorized to run URL intranet.eu.corp.mycompany.com</message> -->
+	</action>
+  </rule>
+  <rule>
+    <id location="https://intranet.eu.corp.mycompany.com" />
+    <action permission="run" version="1.8.0_131" force="true" >
+		<!-- <message>Intranet portal Applet running Java 8 authorized to run URL https://intranet.eu.corp.mycompany.com </message> -->
+	</action>
+  </rule>  
+  <rule>
+    <id location="https://intranet-pprd.eu.corp.mycompany.com" />
+    <action permission="run" version="1.8.0_131" force="true" >
+		<!-- <message>Intranet portal Applet running Java 8 authorized to run URL https://intranet-pprd.eu.corp.mycompany.com</message> -->
+	</action>
+  </rule>   
+  
+  <!-- Centreon Map  http://centreon.mycompany.com/centreon/modules/centreon-map-server/jws/ , the certificate expiration date is : dd/MM/YYYY  -->
+  <rule>
+    <id>
+      <certificate algorithm="SHA-256" hash="xxx" />
+    </id>
+    <action permission="run" version="1.8.0_131" force="true" >
+		<!-- <message>Centreon Map running Java 8 authorized to run</message> -->
+	</action>
+  </rule>   
+  
+  <!-- CA spectrum http://spectrum.mycompany.com/spectrum/oneclick.jnlp , the certificate expiration date is : dd/MM/YYYY -->
+  <rule>
+    <!-- <certificate algorithm="SHA-256" hash="" /> -->
+    <id location="spectrum.corp.mycompany.com" />
+    <action permission="run" >
+		<!-- <message>CA Spectrum running Java 8 authorized to run URL spectrum.corp.mycompany.com</message> -->
+	</action>
+  </rule>    
+  <rule>
+    <id location="10.0.0.1" />
+    <action permission="run" version="1.8.0_131" force="true" >
+		<!-- <message>CA Spectrum running Java 8 authorized to run URL with IP 10.0.0.1</message> -->
+	</action>
+  </rule>     
+         
+  <!-- Apps X -->
+  <rule>
+    <id location="devhost:8042" />
+    <action permission="run" version="1.7.0_55" force="true" >
+		<!-- <message>Run rule Apps X on specific port 8042</message> -->
+	</action>	
+  </rule>
+
+
+  <!-- Define here Rules for Partners applications -->
+
+	  <rule>
+		<id location="*.your-partner.com" />
+		<action permission="run"  >
+		<!-- <message>PSA Applet running Java 8 authorized to run from URL *.partners.com</message> -->
+		</action>		
+	  </rule>
+	  
+	
+  <!-- end of Partner rules -->
+  
+  <!-- Define here Rules for local applications -->
+  
+  <!-- EUR -->
+  
+	<!-- Spain -->
+	<rule>
+		<id location="https://partner-sp.es" />
+		<action permission="run" version="1.8.0_131" force="true" >
+		<!-- <message>Spain local Application running Java 8 authorized to run from URL partner-sp</message> -->
+		</action>			
+	</rule>
+
+	
+	<!-- End of Spain rules -->
+	
+	<!-- France -->	
+	<rule>
+		<id location="https://www.hr.csod.com" />
+		<action permission="run" version="1.8.0_131" force="true" >
+			<!-- <message>Rule to allow HR SaaS location https://www.hr.csod.com : RUN permission allowed</message> -->
+		</action>
+	</rule>	
+	<!-- End of France rules -->
+	
+  <!-- APAC -->
+  
+
+  <!-- AMEI -->
+  
+  <!-- LATAM -->
+  
+  <!-- US -->
+  
+  
+  <!-- Anything signed with this Dev PKI certificate for applications running JRE 6 is NOT allowed in PRODUCTION  -->
+  <rule> 
+    <id>
+      <certificate algorithm="SHA-256" hash="xxx" />
+    </id>
+    <action permission="block" version="1.6.0_45" force="true" >
+		<message>XXXX  Webapp running Java 6 NOT authorized to run in Production</message>
+	</action>	
+  </rule>
+ 
+      
+  <!-- Default rule : run all by default with latest JRE version -->
+  <!-- 
+  see https://en.wikipedia.org/wiki/List_of_Internet_top-level_domains#Country_code_top-level_domains
+  https://en.wikipedia.org/wiki/List_of_Internet_top-level_domains#ICANN-era_generic_top-level_domains
+  -->
+
+  <!-- 
+  http://docs.oracle.com/javase/8/docs/technotes/guides/deploy/deployment_rules.html#A1150376
+   If a rule set is reported as invalid, then check for the following problems based on the error you received:
+   
+##A rule with an action of run has no selection criteria provided and therefore matches all RIAs.
+##The file is unreadable.
+##The structure of the file is invalid.
+##The rules are not properly defined.
+##The JAR file is not properly signed with a valid certificate.
+  -->
+  
+  <!-- Default rule : run all by default with latest JRE version 
+  
+  ==> this <id /> syntax does not work when RUN permission is set ...
+  
+  Oracle documentation is unclear regarding ability to RUN any application by default :
+	- If the location attribute is not present, or the value is null, then the location matches all RIAs. 
+	- The host name cannot be just an asterisk.
+	- If a rule set is reported as invalid, then check if a rule with an action of run has no selection criteria provided and therefore matches all RIAs.
+
+
+  -->
+  
+  <rule>
+    <id location="*.org" />
+    <action permission="run" version="1.8.0_131" force="true" >
+		<!-- <message>Default rule with wildcard *.org to allow any location: RUN permission allowed</message> -->
+	</action>
+  </rule>
+   
+  <rule>
+    <id location="*.com" />
+    <action permission="run" version="1.8.0_131" force="true" >
+		<!-- <message>Default rule with wildcard *.com to allow any location: RUN permission allowed</message> -->
+	</action>
+  </rule>
+  
+  <rule>
+    <id location="*.net" />
+    <action permission="run" version="1.8.0_131" force="true" >
+		<!-- <message>Default rule with wildcard *.net to allow any location: RUN permission allowed</message> -->
+	</action>
+  </rule>  
+  
+  <rule>
+    <id location="*.eu" />
+    <action permission="run" version="1.8.0_131" force="true" >
+		<!-- <message>Default rule with wildcard *.eu to allow any location: RUN permission allowed</message> -->
+	</action>
+  </rule> 
+  
+  <rule>
+    <id location="*.edu" />
+    <action permission="run" version="1.8.0_131" force="true" >
+		<!-- <message>Default rule with wildcard *.edu to allow any location: RUN permission allowed</message> -->
+	</action>
+  </rule> 
+  
+  <rule>
+    <id location="*.gov" />
+    <action permission="run" version="1.8.0_131" force="true" >
+		<!-- <message>Default rule with wildcard *.gov to allow any location: RUN permission allowed</message> -->
+	</action>
+  </rule> 
+  
+  <rule>
+    <id location="*.fr" />
+    <action permission="run" version="1.8.0_131" force="true" >
+		<!-- <message>Default rule with wildcard *.fr to allow any location: RUN permission allowed</message> -->
+	</action>
+  </rule>
+  
+  <rule>
+    <id location="*.ac"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ad"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ae"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.af"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ag"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ai"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.al"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.am"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.an"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ao"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.aq"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ar"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.as"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.at"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.au"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.aw"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ax"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.az"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ba"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.bb"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.bd"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.be"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.bf"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.bg"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.bh"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.bi"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.bj"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.bm"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.bn"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.bo"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.bq"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.br"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.bs"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.bt"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.bv"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.bw"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.by"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.bz"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ca"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.cc"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.cd"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.cf"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.cg"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ch"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ci"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ck"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.cl"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.cm"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.cn"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.co"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.cr"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.cu"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.cv"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.cw"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.cx"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.cy"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.cz"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.de"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.dj"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.dk"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.dm"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.do"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.dz"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ec"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ee"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.eg"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.eh"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.er"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.es"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.et"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.eu"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.fi"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.fj"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.fk"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.fm"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.fo"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+	<!--
+  <rule>
+    <id location="*.fr"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  -->
+  <rule>
+    <id location="*.ga"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.gb"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.gd"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ge"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.gf"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.gg"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.gh"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.gi"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.gl"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.gm"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.gn"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.gp"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.gq"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.gr"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.gs"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.gt"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.gu"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.gw"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.gy"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.hk"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.hm"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.hn"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.hr"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ht"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.hu"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.id"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ie"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.il"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.im"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.in"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.io"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.iq"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ir"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.is"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.it"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.je"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.jm"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.jo"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.jp"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ke"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.kg"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.kh"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ki"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.km"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.kn"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.kp"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.kr"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.kw"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ky"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.kz"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.la"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.lb"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.lc"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.li"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.lk"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.lr"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ls"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.lt"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.lu"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.lv"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ly"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ma"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.mc"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.md"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.me"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.mg"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.mh"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.mk"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ml"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.mm"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.mn"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.mo"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.mp"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.mq"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.mr"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ms"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.mt"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.mu"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.mv"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.mw"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.mx"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.my"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.mz"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.na"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.nc"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ne"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.nf"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ng"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ni"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.nl"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.no"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.np"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.nr"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.nu"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.nz"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.om"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.pa"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.pe"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.pf"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.pg"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ph"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.pk"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.pl"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.pm"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.pn"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.pr"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ps"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.pt"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.pw"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.py"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.qa"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.re"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ro"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.rs"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ru"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.rw"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.sa"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.sb"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.sc"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.sd"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.se"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.sg"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.sh"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.si"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.sj"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.sk"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.sl"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.sm"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.sn"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.so"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.sr"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ss"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.st"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.su"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.sv"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.sx"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.sy"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.sz"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.tc"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.td"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.tf"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.tg"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.th"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.tj"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.tk"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.tl"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.tm"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.tn"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.to"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.tp"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.tr"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.tt"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.tv"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.tw"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.tz"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ua"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ug"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.uk"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.us"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.uy"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.uz"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.va"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.vc"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ve"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.vg"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.vi"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.vn"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.vu"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.wf"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ws"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.ye"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.yt"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.za"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.zm"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+  <rule>
+    <id location="*.zw"/>
+    <action permission="run" version="1.8.0_131" force="true" />
+  </rule>
+
+  
+  <!-- BLACK List : block all by default 
+  <rule>
+    <id />
+    <action permission="block">
+      <message>
+	  
+	  Blocked by SEC Corporate policy, please contact IT Operations.
+	  
+	  </message>
+	  <message locale="fr">
+	  
+	  Application Java bloquée par la sécurité IT, contacter la Production svp.
+	  
+	  </message>
+    </action>
+  </rule>  
+  -->
+   
+</ruleset> 

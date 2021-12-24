@@ -1,0 +1,22 @@
+  <!-- 
+  http://www.oracle.com/technetwork/java/javase/8u60-relnotes-2620227.html#newft
+  Deployment Rule Set (DRS) 1.2 is introduced in JRE 8 Update 60
+  [...] Allow "message" element to apply to all rule types, where previously it only applied to a block rule [...] 
+  <ruleset version="1.2"> 
+  
+  http://docs.oracle.com/javase/8/docs/technotes/guides/deploy/deployment_rules.html#CCJEDAAE 
+  
+  http://docs.oracle.com/javase/8/docs/technotes/guides/deploy/jcp.html#A1152831
+  20.4.3 Deployment Rule Set
+  If an active deployment rule set is installed on the system, the link View the active Deployment Rule Set is shown before the Manage Certificates button
+  Files must be copied to C:\Windows\Sun\Java\Deployment\DeploymentRuleSet.jar , not to C:\Users\~UserName\AppData\LocalLow\Sun\Java\Deployment
+  -->
+
+  <!-- *** IMPORTANT*** do not define http:// protocole in location , do specify https:// only when SSL is used -->
+
+
+  <!-- allow anything signed with your Corporate cert for applications supporting JRE 8-->
+
+  https://docs.oracle.com/javase/8/docs/technotes/guides/deploy/deployment_rules.html 
+  For RIAs that do not use JNLP, this value is matched to the URL for the HTML file. The path is case sensitive and UTF-8 encoding is assumed.
+
